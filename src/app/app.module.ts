@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxStarRatingModule } from 'ngx-star-rating-latest';
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-
-
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { RestaurantOwlCarouselComponent } from './components/restaurant-owl-carousel/restaurant-owl-carousel.component';
 import { SerchRetaurantComponent } from './components/serch-retaurant/serch-retaurant.component';
-
+import { SearchTableComponent } from './components/reserve-table/search-table/search-table.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -56,6 +54,7 @@ import { SerchRetaurantComponent } from './components/serch-retaurant/serch-reta
     ContactUsComponent,
     RestaurantOwlCarouselComponent,
     SerchRetaurantComponent,
+    SearchTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,10 +63,10 @@ import { SerchRetaurantComponent } from './components/serch-retaurant/serch-reta
     HttpClientModule,
     NgxStarRatingModule,
     FormsModule,
-    CarouselModule
-
+    CarouselModule,
+    CommonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
