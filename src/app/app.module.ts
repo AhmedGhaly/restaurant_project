@@ -30,6 +30,7 @@ import { RestaurantOwlCarouselComponent } from './components/restaurant-owl-caro
 import { SerchRetaurantComponent } from './components/serch-retaurant/serch-retaurant.component';
 import { SearchTableComponent } from './components/reserve-table/search-table/search-table.component';
 import { CommonModule } from '@angular/common';
+import { PaymentComponent } from './components/order-details/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { CommonModule } from '@angular/common';
     RestaurantOwlCarouselComponent,
     SerchRetaurantComponent,
     SearchTableComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
