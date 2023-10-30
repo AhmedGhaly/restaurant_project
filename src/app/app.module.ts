@@ -27,10 +27,22 @@ import { SearchComponent } from './components/search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { RestaurantOwlCarouselComponent } from './components/restaurant-owl-carousel/restaurant-owl-carousel.component';
+
+import { GetLocationComponent } from './components/get-location/get-location.component';
+import { FAQComponent } from './components/faq/faq.component';
+
 import { SerchRetaurantComponent } from './components/serch-retaurant/serch-retaurant.component';
+
 import { SearchTableComponent } from './components/reserve-table/search-table/search-table.component';
 import { CommonModule } from '@angular/common';
+
 import { PaymentComponent } from './components/order-details/payment/payment.component';
+
+import { ShoppingCartService } from 'src/app/services/ShoppingCart.service';
+import { CartPageComponent } from './components/cart-page/cart-page.component';
+import { RouterModule } from '@angular/router';
+import { CartService } from './services/service-cart';
+import { CartItemsComponent } from './components/cart-items/cart-items.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +66,16 @@ import { PaymentComponent } from './components/order-details/payment/payment.com
     SearchComponent,
     ContactUsComponent,
     RestaurantOwlCarouselComponent,
+    GetLocationComponent,
+    FAQComponent,
     SerchRetaurantComponent,
+
     SearchTableComponent,
+
     PaymentComponent,
+
+    CartPageComponent,
+    CartItemsComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +86,7 @@ import { PaymentComponent } from './components/order-details/payment/payment.com
     FormsModule,
     CarouselModule,
     CommonModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
