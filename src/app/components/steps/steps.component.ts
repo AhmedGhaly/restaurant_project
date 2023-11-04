@@ -1,10 +1,20 @@
 import { Component,Input,OnInit } from '@angular/core';
 import { StepsService } from 'src/app/services/steps.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-steps',
   templateUrl: './steps.component.html',
   styleUrls: ['./steps.component.css'],
+  animations: [
+    trigger('lineAnimation', [
+      state('processed', style({ width: '0%', marginLeft: '10%' })),
+      state('shipped', style({ width: '40%', marginLeft: '13%' })),
+      state('enRoute', style({ width: '44%', marginLeft: '13%' })),
+      state('arrived', style({ width: '67%', marginLeft: '13%' })),
+      transition('* => *', animate('500ms ease-in-out')),
+    ]),
+  ],
 })
 export class StepsComponent implements OnInit {
   @Input() status!: string
@@ -23,6 +33,7 @@ export class StepsComponent implements OnInit {
       return 'inactive';
     }
   }
+
   ngOnInit() {
     this.StepsServices.getStatus().subscribe((data: any) => {
       this.status = data.status;

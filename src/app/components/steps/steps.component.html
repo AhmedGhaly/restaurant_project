@@ -46,7 +46,7 @@
       <div class="icons">
         <div class="details">
           <i class="fa-solid fa-file-circle-check fa-2x"></i>
-          <span style="display: inline-block; width: 20px">Processed</span>
+          <!-- <span style="display: inline-block; width: 20px">Order Processed</span> -->
         </div>
       </div>
     </div>
@@ -54,15 +54,15 @@
       <div class="icons">
         <div class="details">
           <i class="fa-solid fa-box fa-2x"></i>
-          <span style="display: inline-block; width: 20px">Shipped</span>
+          <!-- <span style="display: inline-block; width: 20px">Order Shipped</span> -->
         </div>
       </div>
     </div>
     <div class="col-3">
       <div class="icons">
-        <div class="details">
+        <div class ="details">
           <i class="fa-solid fa-truck-fast fa-2x"></i>
-          <span style="display: inline-block; width: 20px">En Route</span>
+          <!-- <span style="display: inline-block; width: 20px">Order En Route</span> -->
         </div>
       </div>
     </div>
@@ -70,9 +70,13 @@
       <div class="icons">
         <div class="details">
           <i class="fa-solid fa-house fa-2x"></i>
-          <span style="display: inline-block; width: 20px">Delivered</span>
+          <!-- <span style="display: inline-block; width: 20px">Order Delivered</span> -->
         </div>
       </div>
     </div>
   </div>
+  <div class="horizontal-line" [@lineAnimation]="status"></div>
 </div>
+
+
+

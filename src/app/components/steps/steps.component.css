@@ -52,6 +52,7 @@
   display: none;
 }
 
+
 .step:last-child::before {
   width: calc(18.5vw + 3px);
 }
@@ -69,3 +70,13 @@
   font-weight: bold;
   margin-left: 5px; /* Add spacing between "INVOICE" and the number */
 }
+.horizontal-line {
+  width: 33.33%; /* The initial width covers one step */
+  height: 5px; /* Adjust the height and color as needed */
+  background-color: orange;
+  position: absolute;
+  top: 62%;
+  transform: translateX(0);
+  animation: moveLine 0.00000000000001 linear; /* Adjust the animation duration as needed */
+}
+
