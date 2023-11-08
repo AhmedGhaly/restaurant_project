@@ -1,4 +1,5 @@
 import { Component,Input,OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { StepsService } from 'src/app/services/steps.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 

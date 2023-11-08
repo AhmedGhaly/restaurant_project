@@ -1,11 +1,14 @@
 export interface Recipe {
-    name: string;
-    rating: number;
-    restaurantName: string;
-    description : string;
-    menuName : string;
-    price : number;
-    imageUrl : string;
-    images: string;
-    restaurantId: number;
+  id: number;
+  name: string;
+  rate: number;
+  restaurantName: string;
+  description: string;
+  menuName: string;
+  price: number;
+  imageUrl: string;
+  images: string[];
+  category: string;
+  menuId: Number;
+  restaurantId: number;
 }

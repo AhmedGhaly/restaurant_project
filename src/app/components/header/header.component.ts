@@ -16,6 +16,9 @@ import { getCookie, removeCookie } from 'typescript-cookie';
 import jwtDecode from 'jwt-decode';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { IsAuthService } from 'src/app/services/is-auth.service';
+import { CartItem } from 'src/app/interfaces/CartItem';
+import { GetRoleService } from 'src/app/services/get-role.service';
+
 
 @Component({
   selector: 'app-header',
@@ -27,12 +30,14 @@ export class HeaderComponent {
   myroute!: string;
   jsonTokenWithoutDecode!: any;
   cartItems$!: Observable<any[]>; // Change this to an Observable
-
+  cartItems: CartItem[] = [];
+  role='';
   // isAuth: Boolean = this.isAuthServices.isAuth;
   constructor(
     private cartService: ShoppingCartService,
     public route: Router,
-    public isAuthServices: IsAuthService
+    public isAuthServices: IsAuthService,
+    private getRoleService:GetRoleService
   ) {
     this.jsonTokenWithoutDecode = getCookie('User');
     let UserImageFromCookie: any = getCookie('UserImage');
@@ -55,6 +60,18 @@ export class HeaderComponent {
     if (!this.cart.nativeElement.contains(event.target) && this.isCartVisible) {
       this.isCartVisible = false;
     }
+  }
+  ngOnInit() {
+
+    this.role=this.getRoleService.GetRole();
+     }
+  updateItems() {
+    this.cartService.getCartItems().subscribe({
+      next: (items) => {
+        this.cartItems = items;
+        console.log(this.cartItems);
+      },
+    });
   }
 
   toggleCart() {
@@ -128,6 +145,7 @@ export class HeaderComponent {
   LogOut() {
     this.name = '';
     removeCookie('User');
+    removeCookie('UserImage');
   }
 
   clearLink() {

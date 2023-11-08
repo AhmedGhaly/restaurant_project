@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxStarRatingModule } from 'ngx-star-rating-latest';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -56,13 +56,37 @@ import { BookContainerComponent } from './components/restaurant/book-container/b
 import { BookSelectionComponent } from './components/restaurant/book-selection/book-selection.component';
 import { PalstineComponent } from './components/palstine/palstine.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
+
+import { CreateResturantComponent } from './components/create-resturant/create-resturant.component';
+import { CreateRecipeComponent } from './components/create-recipe/create-recipe.component';
+
 import { FeedbackReviewsComponent } from './components/feedback-reviews/feedback-reviews.component';
 
 import { StatusComponent } from './components/status/status.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderUserDetailsComponent } from './components/order-user-details/order-user-details.component';
+
+import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
+import { AdminOrderDetailsComponent } from './components/admin-order-details/admin-order-details.component';
+import { AdminOrderContainerComponent } from './components/admin-order-container/admin-order-container.component';
+import { AdminTablesComponent } from './components/admin-tables/admin-tables.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
+import { FeedbackScoreComponent } from './components/feedback-score/feedback-score.component';
+import { RecipeFeedbackComponent } from './components/recipe-feedback/recipe-feedback.component';
+import { RecipeFeddbackReviewsComponent } from './components/recipe-feddback-reviews/recipe-feddback-reviews.component';
+import { MapComponent } from './components/map/map.component';
+import { CreateCoponComponent } from './components/create-copon/create-copon.component';
+import { CreateMenuComponent } from './components/create-menu/create-menu.component';
+import { CreateTableComponent } from './components/create-table/create-table.component';
+
+import { DashBoardComponent } from './components/dash-board/dash-board.component';
+
+import { PaginationComponent } from './pagination/pagination.component';
+import { SearchReceipeResturantComponent } from './components/search-receipe-resturant/search-receipe-resturant.component';
+import { SystemAdminDashboardComponent } from './components/system-admin-dashboard/system-admin-dashboard.component';
+import { UpdateRecipeComponent } from './components/update-recipe/update-recipe.component';
+import { UpdateRestaurantComponent } from './components/update-restaurant/update-restaurant.component';
 
 
 
@@ -70,7 +94,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
-    
     AppComponent,
     HomeComponent,
     FooterComponent,
@@ -110,13 +133,38 @@ import { ProfileComponent } from './components/profile/profile.component';
     BookSelectionComponent,
     PalstineComponent,
     HeaderComponent,
+
+    CreateResturantComponent,
+    CreateRecipeComponent,
+    CreateCoponComponent,
+    CreateMenuComponent,
+    CreateTableComponent,
+
     FeedbackReviewsComponent,
     RecipeComponent,
     StatusComponent,
     OrdersComponent,
     OrderUserDetailsComponent,
+
+    AdminOrdersComponent,
+    AdminOrderDetailsComponent,
+    AdminOrderContainerComponent,
+    AdminTablesComponent,
+
     ProfileComponent,
 
+    FeedbackScoreComponent,
+    RecipeFeedbackComponent,
+    RecipeFeddbackReviewsComponent,
+    MapComponent,
+    DashBoardComponent,
+    PaginationComponent,
+    SearchReceipeResturantComponent,
+
+    SystemAdminDashboardComponent,
+
+    UpdateRecipeComponent,
+    UpdateRestaurantComponent,
 
 
 
@@ -133,9 +181,10 @@ import { ProfileComponent } from './components/profile/profile.component';
     SidebarModule,
     ReactiveFormsModule,
     SidebarModule,
-    CommonModule
+    CommonModule,
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -15,11 +15,10 @@ export class FeedbackReviewsComponent implements OnInit {
 
   ngOnInit() {
     this.feedbackService.getReviewsForRestaurant(this.restaurantId).subscribe((data: IRestaurantFeedback[]) => {
+      
       this.testimonials = data;
-      // this.userAvatar='src/assets/images/client1.jpg';
-      // this.userName='Atef';
-console.log(data);
-console.log(this.testimonials);
+      console.log(data);
+      console.log(this.testimonials);
 
     });
   }

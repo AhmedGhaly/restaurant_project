@@ -120,6 +120,7 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .user_option .cart_link svg {
@@ -216,10 +217,15 @@
   transition: top 0.3s ease-in-out;
 }
 
+#logOut a:hover {
+  color: white;
+}
+
+
 #tables {
   position: absolute;
   top: -60px;
-  right: 450px;
+  right: 530px;
   z-index: 1;
   transition: top 0.3s ease-in-out;
 }

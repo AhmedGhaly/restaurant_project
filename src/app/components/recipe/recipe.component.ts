@@ -1,82 +1,123 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
+import {AddToCartService} from 'src/app/services/add-to-cart.service';
+import { MenuService } from 'src/app/services/menu.service';
+import { Menu } from '@syncfusion/ej2-angular-navigations';
+
 
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
-  styleUrls: ['./recipe.component.css']
+  styleUrls: ['./recipe.component.css'],
 })
-export class RecipeComponent {//implements OnInit {
+
+export class RecipeComponent implements OnInit {
+
   recipes: Recipe[] = [];
   selectedCategoryFilter: string = 'All Categories';
-  uniqueCategories: string[] = [];
-  filteredRecipes: Recipe[] = [];
+  uniqueCategories: Menu[] = [];
   searchText: string = '';
   minRating: number = 0;
   maxRating: number = 5;
   minPrice: number = 0;
+  filteredRecipe!: Recipe[];
   maxPrice: number = 1000;
   restaurantFilter: string = '';
   uniqueRestaurants: string[] = [];
-
-  constructor(private recipeService: RecipeService) {
-    this.filteredRecipes = [];
+  selectCategory: string = '';
+  constructor(private recipeService: RecipeService,private addToCartService: AddToCartService, private menuService: MenuService) {
+    
   }
+
+  addToCart(recipe: Recipe) {
+    console.log(recipe);
+    const CartItemData = {
+      quantity: 1,
+      totalPrice: recipe.price,
+      recipeId: recipe.id.toString(),
+      restaurantId: recipe.restaurantId,
+    };
+
+    this.addToCartService.AddRecipeToCart(CartItemData).subscribe({
+      next:(Response)=>console.log(Response),
+      error:(err)=>console.log(err)
+    })   
+  }
+
   ngOnInit() {
+    
+    this.menuService.getMenu().subscribe({
+      next:data =>
+      { 
+        this.uniqueCategories = data
+      }
+    })
     this.recipeService.getRecipes().subscribe((recipes) => {
       this.recipes = recipes;
-      this.filteredRecipes = recipes;
       this.uniqueRestaurants = this.getUniqueRestaurants();
-      this.uniqueCategories = this.getUniqueCategories();
     });
   }
+
   private getUniqueCategories(): string[] {
-    const uniqueCategories = [...new Set(this.recipes.map((recipe) => recipe.menuName))];
+    const uniqueCategories = [
+      ...new Set(this.recipes.map((recipe) => recipe.category)),
+    ];
     return uniqueCategories;
   }
 
+
   private getUniqueRestaurants(): string[] {
-    const uniqueNames = [...new Set(this.recipes.map((recipe) => recipe.restaurantName))];
+    const uniqueNames = [
+      ...new Set(this.recipes.map((recipe) => recipe.restaurantName)),
+    ];
     return uniqueNames;
   }
-  filterRecipes() {
-    this.filteredRecipes = this.recipes.filter((recipe) => {
-      const nameMatch = recipe.name.toLowerCase().includes(this.searchText.toLowerCase());
-      const ratingMatch = recipe.rating >= this.minRating && recipe.rating <= this.maxRating;
-      const priceMatch = recipe.price >= this.minPrice && recipe.price <= this.maxPrice;
 
-      if (this.restaurantFilter) {
-        const restaurantMatch = recipe.restaurantName.toLowerCase().includes(this.restaurantFilter.toLowerCase());
-        return nameMatch && ratingMatch && priceMatch && restaurantMatch;
-      } else {
-        return nameMatch && ratingMatch && priceMatch;
-      }
-    });
+  filterByRestaurant(restaurant: string) {
+    //this.restaurantFilter = restaurant;
+    this.filterRecipes();
   }
-  filterByCategory(selectedCategory: string) {
-    this.selectedCategoryFilter = selectedCategory;
-    if (selectedCategory === 'All Categories') {
-      this.filteredRecipes = this.recipes.filter((recipe) => {
-        return (
-          recipe.name.toLowerCase().includes(this.searchText.toLowerCase()) &&
-          recipe.rating >= this.minRating &&
-          recipe.rating <= this.maxRating &&
-          recipe.price >= this.minPrice &&
-          recipe.price <= this.maxPrice
-        );
-      });
-    } else {
-      this.filteredRecipes = this.recipes.filter((recipe) => {
-        return (
-          recipe.name.toLowerCase().includes(this.searchText.toLowerCase()) &&
-          recipe.rating >= this.minRating &&
-          recipe.rating <= this.maxRating &&
-          recipe.price >= this.minPrice &&
-          recipe.price <= this.maxPrice &&
-          recipe.menuName.toLowerCase().includes(selectedCategory.toLowerCase())
-        );
-      });
-    }
+
+
+  filterCategory(){
+    this.filteredRecipe = this.recipes.filter((recipe) =>
+      recipe.rate >= this.minRating && recipe.rate <= this.maxRating
+        && recipe.price >= this.minPrice && recipe.price <= this.maxPrice
+        && recipe.menuName == this.selectCategory
+    );
+  }
+
+
+
+  selectedCategory(selectedCategory: any) {
+    this.selectCategory = selectedCategory.target.value;
+    this.filterCategory();
+  } 
+
+
+  filterRecipes() {
+    if(this.selectCategory == ''){
+      this.filteredRecipe = this.recipes.filter((recipe) =>
+        recipe.rate >= this.minRating && recipe.rate <= this.maxRating
+          && recipe.price >= this.minPrice && recipe.price <= this.maxPrice
+      );
+    }else  this.filterCategory();
+
+  }
+
+
+  searchRecipesByName() {
+    console.log(this.searchText)
+    if(this.searchText)
+    {
+      this.recipeService.searchRecipesByName(this.searchText).subscribe((recipes) => {
+        this.recipes = recipes;
+        this.filteredRecipe = recipes;
+      });  
+    }    
+    else
+      this.filteredRecipe = [];
+
   }
 }

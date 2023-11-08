@@ -11,7 +11,10 @@ import { IsAuthService } from 'src/app/services/is-auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private myServices: LoginService, private isAuthServices: IsAuthService) {}
+  constructor(
+    private myServices: LoginService,
+    private isAuthServices: IsAuthService
+  ) {}
   userLogin: UserLogin = {
     email: '',
     password: '',
@@ -44,7 +47,11 @@ export class LoginComponent {
           image: loginResponse.imageUrl,
         };
         this.userName.emit(userData);
-        setCookie('UserImage', userData.image);
+        let userImage =
+          userData.image != null
+            ? userData.image
+            : '../../../assets/images/user2.png';
+        setCookie('UserImage', userImage);
       },
       error: (errorMassage) => {
         if (errorMassage) {

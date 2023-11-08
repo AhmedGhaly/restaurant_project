@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, Renderer2, AfterViewInit, OnInit } from '@angular/core';
 import * as Isotope from 'isotope-layout';
 import { Menu } from 'src/app/interfaces/menu';
 import { Recipe } from 'src/app/interfaces/recipe';
@@ -13,6 +13,9 @@ export class MenuComponent implements AfterViewInit {
 
   public menus: Menu[] = [];   
   public recipes: Recipe[] = []; 
+
+  recipe1!: Recipe[];
+  recipe2!: Recipe[];
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
@@ -52,6 +55,7 @@ export class MenuComponent implements AfterViewInit {
     }
 
   }
+
 
 
   filterMenu(menu: string) {
